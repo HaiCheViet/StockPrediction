@@ -5,7 +5,7 @@ import tensorflow as tf
 import tensorflow_hub as hub
 from keras.layers import Dense, LSTM, Embedding, Input, Concatenate, Lambda
 from keras.models import Model
-from pipe_line import pipeline, tokenize_remove_stopwords_extract_companies_with_spacy
+from api_predict.pipe_line import pipeline, tokenize_remove_stopwords_extract_companies_with_spacy
 
 
 class ModelStock(object):

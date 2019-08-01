@@ -10,10 +10,6 @@ import dateutil.parser
 import requests
 import sys
 
-# If you want to use this code, you'd better have a mongodb server
-# Because the file storing feature has not been tested, sorry about that :)
-# Or, you can implement your own storage method
-
 FILE_PATH = 'reuters_news.csv'
 MONGO_URL = None
 MONGO_USERNAME = None
@@ -66,11 +62,10 @@ with open(FILE_PATH, 'a+') as f:
                 except requests.exceptions.RequestException:
                     print("ERROR: Request error, did you start model Serving?")
                     sys.exit()
-                response = json.loads(res.content)
+                response = json.loads(res.content.decode("utf-8"))
                 if response == {'Company': 0}:
                     continue
-                for k in response.keys():
-                    response[k]= f"{k}:{response[k]}"
+
                 print(response)
                 news.update(response)
                 dump_news(news, writer)

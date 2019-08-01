@@ -61,7 +61,8 @@ def convert():
     except requests.exceptions.RequestException:
         print("ERROR: Request error, did you start model Serving?")
         sys.exit()
-    response = json.loads(res.content)
+    response = json.loads(res.content.decode("utf-8"))
+    print(response)
     news.update(response)
     if news:
         return Response(json.dumps(news), 200, mimetype="application/json")
